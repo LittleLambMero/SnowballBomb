@@ -1,0 +1,1 @@
+summon minecraft:area_effect_cloud ~ ~ ~ {Duration: 1200, ReapplicationDelay: 20, Radius: 4.0f, RadiusOnUse: -0.5f, RadiusPerTick: -0.0025f, Effects: [{Id: 19, Amplifier: 4, Duration: 600, ShowIcon: true, ShowParticles: true}], Color:753920}

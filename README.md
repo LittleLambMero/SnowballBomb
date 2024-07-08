@@ -80,8 +80,8 @@ execute if entity @a[tag = Throwed, tag = HoldBomb_small, sort = nearest] run ta
 
  函式檔案：<font color=red><u>main/action_events/bomb_trail/run</u></font><p>
 
- 該函式主要作用是存放並執行各個炸彈的軌跡效果函數。透過偵測炸彈實體的標籤，來執行相對應的軌跡函數。<br>
- 函數路徑應為：main/action_events/bomb_trail/&lt;ItemID&gt;/main
+ 該函式主要作用是存放並執行各個炸彈的軌跡效果函數。透過偵測炸彈實體標記的標籤，來執行相對應的軌跡函數。<br>
+ 函數路徑應為：**main/action_events/bomb_trail/&lt;ItemID&gt;/main**
 
 ```mcfunction
 execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_trail/small_bomb/main
@@ -91,12 +91,34 @@ execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_ev
 
  函式檔案：<font color=red><u>main/action_events/bomb_trail/&lt;ItemID&gt;/main</u></font><p>
 
- 該函數控制著炸彈的所有軌跡事件，如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
- 另外，該函數可以在執行中省略，不影響炸彈本身的執行。
+ 該函數控制炸彈飛行時的軌跡效果，在炸彈飛行中的每一個遊戲刻（tick）都將重複執行一次。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
+ 另外，該函數可以在省略，不影響炸彈本身的程式執行。
 
  ```mcfunction
 # == 小型雪球炸彈的軌跡事件 == #
 particle minecraft:smoke ~ ~ ~ 0.1 0.1 0.1 0.01 7
+ ```
+
+### 爆炸事件容器
+
+ 函式檔案：<font color=red><u>main/action_events/bomb_effects/run</u></font><p>
+
+ 該函式主要作用是存放並執行各個炸彈的爆炸效果函數。透過偵測炸彈實體標記的標籤，來執行相對應的爆炸函數。
+
+ 函數路徑應為：**main/action_events/bomb_effects/&lt;ItemID&gt;/main**
+
+### 爆炸事件
+
+ 函式檔案：<font color=red><u>main/action_events/bomb_effects/run</u></font><p>
+
+ 當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
+ 必須注意，在main函數的最後必須執行`kill @s`指令。
+
+```mcfunction
+# == 小型雪球炸彈的行為控制 == #
+summon minecraft:creeper ~ ~ ~ {CustomName: '{"text": "小型雪球炸彈", "color": "white"}', CustomNameVisible: false, Invulnerable: true, NoGravity: true, NoAI: true, Silent:true, ExplosionRadius: 1b, Fuse: 0}
+
+kill @s
  ```
 
 ## 版本紀錄

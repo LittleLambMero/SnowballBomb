@@ -34,33 +34,11 @@
 ## 版本紀錄
 
 <details>
-    <summary>v1.0.0</summary>
+    <summary>v1.3.0</summary>
 
-    - 添加了 5 種炸彈配方［小型/中型/大型/強力雪球炸彈｜爆裂閃鑽之星］
+    - 新增了 1 種炸彈配方［八寒地獄］
 
-</details>
-<details>
-    <summary>v1.0.1</summary>
-
-    - 調整炸彈的爆炸威力
-
-    - 重新設計「爆裂閃鑽之星」的合成配方
-
-</details>
-<details>
-    <summary>v1.1.0</summary>
-
-    - 新增了 3 種炸彈配方［落雷信子｜閃光彈｜毒氣彈］
-
-    - 添加 2 個新物品［銅粉｜引磁銅粉］
-
-</details>
-<details>
-    <summary>v1.1.1</summary>
-
-    - 重新設計「落雷信子」的合成配方
-
-    - 新增「資料包專用說明書」，且可以查詢物品配方
+    - 添加 1 個新物品［火藥團］
 
 </details>
 <details>
@@ -72,10 +50,32 @@
 
 </details>
 <details>
-    <summary>v1.3.0</summary>
+    <summary>v1.1.1</summary>
 
-    - 新增了 1 種炸彈配方［八寒地獄］
+    - 重新設計「落雷信子」的合成配方
 
-    - 添加 1 個新物品［火藥團］
+    - 新增「資料包專用說明書」，且可以查詢物品配方
+
+</details>
+<details>
+    <summary>v1.1.0</summary>
+
+    - 新增了 3 種炸彈配方［落雷信子｜閃光彈｜毒氣彈］
+
+    - 添加 2 個新物品［銅粉｜引磁銅粉］
+
+</details>
+<details>
+    <summary>v1.0.1</summary>
+
+    - 調整炸彈的爆炸威力
+
+    - 重新設計「爆裂閃鑽之星」的合成配方
+
+</details>
+<details>
+    <summary>v1.0.0</summary>
+
+    - 添加了 5 種炸彈配方［小型/中型/大型/強力雪球炸彈｜爆裂閃鑽之星］
 
 </details>

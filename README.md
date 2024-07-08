@@ -1,8 +1,9 @@
 # SnowballBomb
 
 - 資料包名稱：雪球炸彈資料包
-- 資料包版本：v1.0.0
+- 資料包版本：v1.3.0
 - 適用遊戲版本：Minecarft 1.20.4
+- 作者：芒果羊羊
 
 ## 玩家專區
 
@@ -46,11 +47,11 @@
 &emsp;用來檢測該物品是否為炸彈。<p>
 
 3. **ItemID:<font color=#AF69FA>&lt;string&gt;</font>**<br>
-&emsp;該物品的ID，未來會用在「資料夾命名」。
+&emsp;該物品的ID，後面會用在「資料夾命名」。
 
-```mcfunction
-give @s snowball{display: {Name: '{"text": "小型雪球炸彈", "color": "white", "bold": false, "italic": false}', Lore: ['{"text": "最簡單的擲出式炸藥，能夠造成最小的爆炸傷害。", "color": "green", "italic": false}', '{"text": ""}', '[{"text": "威力：", "color": "gold", "italic": false}, {"text": "D+", "color": "#787D7A", "italic": false}]', '[{"text": "稀有度：", "color": "#FA0056", "italic": false}, {"text": "常見", "color": "white", "italic": false}]']}, RepairCost: 128, BombType: "small", ItemID: "snowbomb:small_bomb", isBomb: true}
-```
+ ```mcfunction
+ give @s snowball{display: {Name: '{"text": "小型雪球炸彈", "color": "white", "bold": false, "italic": false}', Lore: ['{"text": "最簡單的擲出式炸藥，能夠造成最小的爆炸傷害。", "color": "green", "italic": false}', '{"text": ""}', '[{"text": "威力：", "color": "gold", "italic": false}, {"text": "D+", "color": "#787D7A", "italic": false}]', '[{"text": "稀有度：", "color": "#FA0056", "italic": false}, {"text": "常見", "color": "white", "italic": false}]']}, RepairCost: 128, BombType: "small", ItemID: "snowbomb:small_bomb", isBomb: true}
+ ```
 
  在設定完成後，您可以開始編寫該物品的配方表，並將該物品註冊於「items_manager」函數中，方便管理與呼叫。詳細教學可以見 [芒果羊羊自定義合成台](https://github.com/LittleLambMero/MeroCraftingTable) 中的自定義配方教學。
 
@@ -61,9 +62,9 @@ give @s snowball{display: {Name: '{"text": "小型雪球炸彈", "color": "white
  根據玩家目前手持的炸彈NBT「**BombType**」，為玩家新增標籤。<br>
  標籤命名格式應為：**HoldBomb_&lt;BombType&gt;**
 
-```mcfunction
-execute if entity @s[nbt = {SelectedItem: {id: "minecraft:snowball", tag: {BombType: "small"}}}] run tag @s add HoldBomb_small
-```
+ ```mcfunction
+ execute if entity @s[nbt = {SelectedItem: {id: "minecraft:snowball", tag: {BombType: "small"}}}] run tag @s add HoldBomb_small
+ ```
 
 ### 炸彈實體識別
 
@@ -73,7 +74,7 @@ execute if entity @s[nbt = {SelectedItem: {id: "minecraft:snowball", tag: {BombT
  標籤命名格式應為：**SnowBomb_&lt;BombType&gt;**
 
  ```mcfunction
-execute if entity @a[tag = Throwed, tag = HoldBomb_small, sort = nearest] run tag @s add SnowBomb_small
+ execute if entity @a[tag = Throwed, tag = HoldBomb_small, sort = nearest] run tag @s add SnowBomb_small
  ```
 
 ### 軌跡事件容器
@@ -83,9 +84,9 @@ execute if entity @a[tag = Throwed, tag = HoldBomb_small, sort = nearest] run ta
  該函式主要作用是存放並執行各個炸彈的軌跡效果函數。透過偵測炸彈實體標記的標籤，來執行相對應的軌跡函數。<br>
  函數路徑應為：**main/action_events/bomb_trail/&lt;ItemID&gt;/main**
 
-```mcfunction
-execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_trail/small_bomb/main
-```
+ ```mcfunction
+ execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_trail/small_bomb/main
+ ```
 
 ### 軌跡事件
 
@@ -95,9 +96,27 @@ execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_ev
  另外，該函數可以在省略，不影響炸彈本身的程式執行。
 
  ```mcfunction
-# == 小型雪球炸彈的軌跡事件 == #
-particle minecraft:smoke ~ ~ ~ 0.1 0.1 0.1 0.01 7
+ # == 小型雪球炸彈的軌跡事件 == #
+ particle minecraft:smoke ~ ~ ~ 0.1 0.1 0.1 0.01 7
  ```
+
+### 特殊功能觸發事件（適用版本 1.2.0 以上）
+
+ 函式檔案：<font color=red><u>main/custom_functions/function_defined_register</u></font><p>
+
+ 在炸彈實體標記中新增標籤「**SnowBomb_FunctionFlag**」即可使用自定義特殊功能，例如 **「冷凍彈」的遇水爆炸功能**（touchWaterExplosion）。<br>
+ 標籤「**SnowBomb_FunctionFlag**」是啟用特殊功能的標籤，而特殊功能標籤可自行命名，一般命名規則是「function_&lt;功能名稱&gt;」，而功能函數執行位置為：**main/custom_functions/functions/&lt;功能名稱&gt;**。以下使用功能標籤「function_touchWaterExplosion（遇水爆炸）」做範例：<p>
+
+```mcfunction
+ # 【function_defined_register.mcfunction】
+ execute as @s[tag = function_touchWaterExplosion] run function snow_bomb:main/custom_functions/functions/touch_water_explosion
+```
+
+```mcfunction
+# 【touch_water_explosion.mcfunction】
+# == 接觸到水面時造成爆炸 (模擬碰撞行為) == #
+execute if block ~ ~ ~ water run kill @e[type = snowball, sort = nearest, limit = 1]
+```
 
 ### 爆炸事件容器
 
@@ -130,7 +149,7 @@ kill @s
 <details>
     <summary>v1.3.0</summary>
 
-    - 新增了 1 種炸彈配方［八寒地獄］
+    - 新增 1 種炸彈配方［八寒地獄］
 
     - 添加 1 個新物品［火藥團］
 
@@ -138,7 +157,7 @@ kill @s
 <details>
     <summary>v1.2.0</summary>
 
-    - 新增了 2 種炸彈配方［冷凍彈｜強力冷凍彈］
+    - 新增 2 種炸彈配方［冷凍彈｜強力冷凍彈］
 
     - 為說明書的目錄添加色彩，方便使用者查詢物品
 
@@ -154,7 +173,7 @@ kill @s
 <details>
     <summary>v1.1.0</summary>
 
-    - 新增了 3 種炸彈配方［落雷信子｜閃光彈｜毒氣彈］
+    - 新增 3 種炸彈配方［落雷信子｜閃光彈｜毒氣彈］
 
     - 添加 2 個新物品［銅粉｜引磁銅粉］
 
@@ -170,6 +189,6 @@ kill @s
 <details>
     <summary>v1.0.0</summary>
 
-    - 添加了 5 種炸彈配方［小型/中型/大型/強力雪球炸彈｜爆裂閃鑽之星］
+    - 新增 5 種炸彈配方［小型/中型/大型/強力雪球炸彈｜爆裂閃鑽之星］
 
 </details>

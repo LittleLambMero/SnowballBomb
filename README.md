@@ -103,9 +103,12 @@ particle minecraft:smoke ~ ~ ~ 0.1 0.1 0.1 0.01 7
 
  函式檔案：<font color=red><u>main/action_events/bomb_effects/run</u></font><p>
 
- 該函式主要作用是存放並執行各個炸彈的爆炸效果函數。透過偵測炸彈實體標記的標籤，來執行相對應的爆炸函數。
-
+ 該函式主要作用是存放並執行各個炸彈的爆炸效果函數。透過偵測炸彈實體標記的標籤，來執行相對應的爆炸函數。<br>
  函數路徑應為：**main/action_events/bomb_effects/&lt;ItemID&gt;/main**
+
+```mcfunction
+execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_effects/small_bomb/main
+```
 
 ### 爆炸事件
 

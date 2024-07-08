@@ -26,28 +26,28 @@
 
  在合成台內任意位置擺放下列材料：<br>
 
-1. 書 ×1
-2. 火藥 ×1
-3. 雪球 ×1
+ 1. 書 ×1
+ 2. 火藥 ×1
+ 3. 雪球 ×1
 
  點擊合成面板即可獲得說明書。
 
 ## 定義自己的炸彈
 
- 本資料包可以自行定義自己的炸彈，大致操作步驟如下面章節描述，所有的指令範例都將以資料包中的「小型雪球炸彈」為準。
+ 本資料包可以製作自己的炸彈，大致操作步驟如下面章節描述，所有的指令範例都將以資料包中的「小型雪球炸彈」為準。
 
 ### 定義炸彈物品
 
  使用物品 NBT 生成自定義的**雪球物品**，以下是「必須存在」的自定義 NBT：<br>
 
-1. **BombType:<font color=#AF69FA>&lt;string&gt;</font>**<br>
-&emsp;用來記錄炸彈的類型。<p>
+ 1. **BombType:<font color=#AF69FA>&lt;string&gt;</font>**<br>
+ &emsp;用來記錄炸彈的類型。<p>
 
-2. **isBomb:<font color=#AF69FA>&lt;boolean&gt;</font>**<br>
-&emsp;用來檢測該物品是否為炸彈，對於炸彈物品而言必定為 **true**。<p>
+ 2. **isBomb:<font color=#AF69FA>&lt;boolean&gt;</font>**<br>
+ &emsp;用來檢測該物品是否為炸彈。對於炸彈物品而言，該值必為 **true**。<p>
 
-3. **ItemID:<font color=#AF69FA>&lt;string&gt;</font>**<br>
-&emsp;該物品的ID，後面會用在「資料夾命名」。
+ 3. **ItemID:<font color=#AF69FA>&lt;string&gt;</font>**<br>
+ &emsp;該物品的ID，後面會用於「資料夾命名」。
 
  ```mcfunction
  give @s snowball{display: {Name: '{"text": "小型雪球炸彈", "color": "white", "bold": false, "italic": false}', Lore: ['{"text": "最簡單的擲出式炸藥，能夠造成最小的爆炸傷害。", "color": "green", "italic": false}', '{"text": ""}', '[{"text": "威力：", "color": "gold", "italic": false}, {"text": "D+", "color": "#787D7A", "italic": false}]', '[{"text": "稀有度：", "color": "#FA0056", "italic": false}, {"text": "常見", "color": "white", "italic": false}]']}, RepairCost: 128, BombType: "small", ItemID: "snowbomb:small_bomb", isBomb: true}
@@ -107,16 +107,16 @@
  在炸彈實體標記中新增標籤「**SnowBomb_FunctionFlag**」即可使用自定義特殊功能，例如 **「冷凍彈」的遇水爆炸功能**（touchWaterExplosion）。<br>
  標籤「**SnowBomb_FunctionFlag**」是啟用特殊功能的標籤，而特殊功能標籤可自行命名，一般命名規則是「function_&lt;功能名稱&gt;」，而功能函數執行位置為：**main/custom_functions/functions/&lt;功能名稱&gt;**。以下使用功能標籤「function_touchWaterExplosion（遇水爆炸）」做範例：<p>
 
-```mcfunction
+ ```mcfunction
  # 【function_defined_register.mcfunction】
  execute as @s[tag = function_touchWaterExplosion] run function snow_bomb:main/custom_functions/functions/touch_water_explosion
-```
+ ```
 
-```mcfunction
-# 【touch_water_explosion.mcfunction】
-# == 接觸到水面時造成爆炸 (模擬碰撞行為) == #
-execute if block ~ ~ ~ water run kill @e[type = snowball, sort = nearest, limit = 1]
-```
+ ```mcfunction
+ # 【touch_water_explosion.mcfunction】
+ # == 接觸到水面時造成爆炸 (模擬碰撞行為) == #
+ execute if block ~ ~ ~ water run kill @e[type = snowball, sort = nearest, limit = 1]
+ ```
 
 ### 爆炸事件容器
 
@@ -125,23 +125,33 @@ execute if block ~ ~ ~ water run kill @e[type = snowball, sort = nearest, limit 
  該函式主要作用是存放並執行各個炸彈的爆炸效果函數。透過偵測炸彈實體標記的標籤，來執行相對應的爆炸函數。<br>
  函數路徑應為：**main/action_events/bomb_effects/&lt;ItemID&gt;/main**
 
-```mcfunction
-execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_effects/small_bomb/main
-```
+ ```mcfunction
+ execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_effects/small_bomb/main
+ ```
 
 ### 爆炸事件
 
  函式檔案：<font color=red><u>main/action_events/bomb_effects/&lt;ItemID&gt;/main</u></font><p>
 
  當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
-> [!IMPORTANT]
-> 注意，在main函數的最後必須執行`kill @s`指令。
+ > [!IMPORTANT]
+ > 注意，在main函數的最後必須執行`kill @s`指令。
 
-```mcfunction
-# == 小型雪球炸彈的行為控制 == #
-summon minecraft:creeper ~ ~ ~ {CustomName: '{"text": "小型雪球炸彈", "color": "white"}', CustomNameVisible: false, Invulnerable: true, NoGravity: true, NoAI: true, Silent:true, ExplosionRadius: 1b, Fuse: 0}
+ ```mcfunction
+ # == 小型雪球炸彈的行為控制 == #
+ summon minecraft:creeper ~ ~ ~ {CustomName: '{"text": "小型雪球炸彈", "color": "white"}', CustomNameVisible: false, Invulnerable: true, NoGravity: true, NoAI: true, Silent:true, ExplosionRadius: 1b, Fuse: 0}
 
-kill @s
+ kill @s
+ ```
+
+### 重置炸彈持有標籤
+
+ 函式檔案：<font color=red><u>main/reset_player_bombtype</u></font><p>
+
+ 將標籤「**HoldBomb_&lt;BombType&gt;**」移除。
+
+ ```mcfunction
+ tag @s remove HoldBomb_small
  ```
 
 ## 版本紀錄

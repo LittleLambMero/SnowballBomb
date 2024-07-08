@@ -72,7 +72,7 @@
 
 </details>
 <details>
-    <summary>v1.2.1</summary>
+    <summary>v1.3.0</summary>
 
     - 新增了 1 種炸彈配方［八寒地獄］
 

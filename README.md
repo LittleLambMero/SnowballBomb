@@ -92,7 +92,7 @@
 
  函式檔案：<font color=red><u>main/action_events/bomb_trail/&lt;ItemID&gt;/main</u></font><p>
 
- 該函數控制炸彈飛行時的軌跡效果，在炸彈飛行中的每一個遊戲刻（tick）都將重複執行一次。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
+ 該函數控制炸彈飛行時的軌跡效果，在炸彈飛行中的每一個遊戲刻（tick）都將重複執行一次。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中，並確保僅透過 main 函數來呼叫它們。<br>
  另外，該函數可以在省略，不影響炸彈本身的程式執行。
 
  ```mcfunction
@@ -133,7 +133,7 @@
 
  函式檔案：<font color=red><u>main/action_events/bomb_effects/&lt;ItemID&gt;/main</u></font><p>
 
- 當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
+ 當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中，並確保僅透過 main 函數來呼叫它們。<br>
  > [!IMPORTANT]
  > 注意，在main函數的最後必須執行`kill @s`指令。
 

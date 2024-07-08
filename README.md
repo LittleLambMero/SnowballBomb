@@ -39,10 +39,10 @@
 
  使用物品 NBT 生成自定義的**雪球物品**，以下是「必須存在」的自定義 NBT：<br>
 
-1. BombType:&lt;string&gt;<br>
+1. **BombType:&lt;string&gt;<br>**
 &emsp;用來記錄炸彈的類型。<p>
 
-2. isBomb:&lt;boolean&gt;<br>
+2. **isBomb:&lt;boolean&gt;<br>**
 &emsp;用來檢測該物品是否為炸彈。
 
 ### 設定炸彈持有標籤

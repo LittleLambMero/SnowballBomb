@@ -43,13 +43,16 @@
 &emsp;用來記錄炸彈的類型。<p>
 
 2. **isBomb:<font color=#AF69FA>&lt;boolean&gt;</font>**<br>
-&emsp;用來檢測該物品是否為炸彈。
+&emsp;用來檢測該物品是否為炸彈。<p>
+
+3. **ItemID:<font color=#AF69FA>&lt;string&gt;</font>**<br>
+&emsp;該物品的ID，未來會用在「資料夾命名」。
 
 ```mcfunction
 give @s snowball{display: {Name: '{"text": "小型雪球炸彈", "color": "white", "bold": false, "italic": false}', Lore: ['{"text": "最簡單的擲出式炸藥，能夠造成最小的爆炸傷害。", "color": "green", "italic": false}', '{"text": ""}', '[{"text": "威力：", "color": "gold", "italic": false}, {"text": "D+", "color": "#787D7A", "italic": false}]', '[{"text": "稀有度：", "color": "#FA0056", "italic": false}, {"text": "常見", "color": "white", "italic": false}]']}, RepairCost: 128, BombType: "small", ItemID: "snowbomb:small_bomb", isBomb: true}
 ```
 
- 在設定完成後，您可以開始編寫該物品的配方表，並將該物品註冊於「items_manager」函數中，方便管理與呼叫。詳細教學可以見 [芒果羊羊自定義合成台（MeroCraftingTable）](https://github.com/LittleLambMero/MeroCraftingTable) 中的自定義配方教學。
+ 在設定完成後，您可以開始編寫該物品的配方表，並將該物品註冊於「items_manager」函數中，方便管理與呼叫。詳細教學可以見 [芒果羊羊自定義合成台](https://github.com/LittleLambMero/MeroCraftingTable) 中的自定義配方教學。
 
 ### 設定炸彈持有標籤
 
@@ -66,12 +69,23 @@ execute if entity @s[nbt = {SelectedItem: {id: "minecraft:snowball", tag: {BombT
 
  函式檔案：<font color=red><u>main/throwed/set_markerdata</u></font><p>
 
- 在擲出的炸彈實體，會透過使用「標記（marker）」實體來標記該炸彈的種類，以方便執行追尾效果與偵測爆炸。根據玩家擁有的「炸彈持有標籤」，設定該標記的標籤。<br>
+ 在擲出的炸彈實體，會透過使用「標記（marker）」實體來標記該炸彈的種類，以方便執行軌跡效果與偵測爆炸。根據玩家擁有的「炸彈持有標籤」，設定該標記的標籤。<br>
  標籤命名格式應為：**SnowBomb_&lt;BombType&gt;**
 
  ```mcfunction
 execute if entity @a[tag = Throwed, tag = HoldBomb_small, sort = nearest] run tag @s add SnowBomb_small
  ```
+
+### 軌跡事件容器
+
+ 函式檔案：<font color=red><u>main/action_events/bomb_trail/run</u></font><p>
+
+ 該函式主要作用是存放並執行各個炸彈的軌跡效果函數。透過偵測炸彈實體的標籤，來執行相對應的軌跡函數。<br>
+ 函數路徑應為：main/action_events/bomb_trail/&lt;ItemID&gt;/main
+
+```mcfunction
+execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_trail/small_bomb/main
+```
 
 ## 版本紀錄
 

@@ -112,7 +112,8 @@ particle minecraft:smoke ~ ~ ~ 0.1 0.1 0.1 0.01 7
  函式檔案：<font color=red><u>main/action_events/bomb_effects/run</u></font><p>
 
  當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
- 必須注意，在main函數的最後必須執行`kill @s`指令。
+> [!IMPORTANT]
+> 注意，在main函數的最後必須執行`kill @s`指令。
 
 ```mcfunction
 # == 小型雪球炸彈的行為控制 == #

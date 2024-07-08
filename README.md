@@ -112,7 +112,7 @@ execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_ev
 
 ### 爆炸事件
 
- 函式檔案：<font color=red><u>main/action_events/bomb_effects/run</u></font><p>
+ 函式檔案：<font color=red><u>main/action_events/bomb_effects/&lt;ItemID&gt;/main</u></font><p>
 
  當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
 > [!IMPORTANT]

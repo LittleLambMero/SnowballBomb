@@ -87,6 +87,18 @@ execute if entity @a[tag = Throwed, tag = HoldBomb_small, sort = nearest] run ta
 execute if entity @s[tag = SnowBomb_small] run function snow_bomb:main/action_events/bomb_trail/small_bomb/main
 ```
 
+### 軌跡事件
+
+ 函式檔案：<font color=red><u>main/action_events/bomb_trail/&lt;ItemID&gt;/main</u></font><p>
+
+ 該函數控制著炸彈的所有軌跡事件，如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中。<br>
+ 另外，該函數可以在執行中省略，不影響炸彈本身的執行。
+
+ ```mcfunction
+# == 小型雪球炸彈的軌跡事件 == #
+particle minecraft:smoke ~ ~ ~ 0.1 0.1 0.1 0.01 7
+ ```
+
 ## 版本紀錄
 
 <details>

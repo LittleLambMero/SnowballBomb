@@ -44,7 +44,7 @@
 &emsp;用來記錄炸彈的類型。<p>
 
 2. **isBomb:<font color=#AF69FA>&lt;boolean&gt;</font>**<br>
-&emsp;用來檢測該物品是否為炸彈。<p>
+&emsp;用來檢測該物品是否為炸彈，對於炸彈物品而言必定為 **true**。<p>
 
 3. **ItemID:<font color=#AF69FA>&lt;string&gt;</font>**<br>
 &emsp;該物品的ID，後面會用在「資料夾命名」。

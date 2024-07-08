@@ -39,15 +39,15 @@
 
  使用物品 NBT 生成自定義的**雪球物品**，以下是「必須存在」的自定義 NBT：<br>
 
-1. **BombType:<font color="#AF69FA">&lt;string&gt;</font><br>**
+1. **BombType:<font color=#AF69FA>&lt;string&gt;</font><br>**
 &emsp;用來記錄炸彈的類型。<p>
 
-2. **isBomb:<font color="#AF69FA">&lt;boolean&gt;</font><br>**
+2. **isBomb:<font color=#AF69FA>&lt;boolean&gt;</font><br>**
 &emsp;用來檢測該物品是否為炸彈。
 
 ### 設定炸彈持有標籤
 
- 函式檔案：<font color="red"><u>main/set_player_bombtype</u></font><p>
+ 函式檔案：<font color=red><u>main/set_player_bombtype</u></font><p>
 
  根據玩家目前手持的炸彈，
 

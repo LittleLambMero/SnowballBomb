@@ -159,6 +159,8 @@ execute if block ~ ~ ~ water run kill @n[type = snowball]
 
     - 殺掉各式各樣的指令蟲蟲
 
+    - 現在所有炸彈都可以堆疊 64 個
+
     - 削弱「爆裂閃鑽之星」的輻射雲時長
 
     - 削弱「引雷信子」的麻痺力場效果強度

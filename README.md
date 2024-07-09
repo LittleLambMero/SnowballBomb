@@ -19,7 +19,7 @@
  本資料包需依附下列資料包來運作：
 
 - [芒果羊羊自定義合成台（MeroCraftingTable）](https://github.com/LittleLambMero/MeroCraftingTable)<br>
- 版本需求：v1.0<br>
+ 版本需求：v2.0<br>
  **提供物品合成功能，缺失時將導致無法合成並取得對應物品。**<p>
 
 ### 資料包說明書合成方法（版本1.1.1以上）

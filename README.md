@@ -165,6 +165,8 @@ execute if block ~ ~ ~ water run kill @n[type = snowball]
 
     - 「冷凍彈」、「強化冷凍彈」、「八寒地獄」的攻擊範圍提升、傷害修正；水面凍結範圍縮小
 
+    - 現在「閃光彈」爆炸不會遺留光源方塊
+
     - 炸彈爆炸時的粒子效果優化
 
 </details>

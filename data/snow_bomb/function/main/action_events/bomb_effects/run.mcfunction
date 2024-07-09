@@ -10,3 +10,5 @@ execute if entity @s[tag = SnowBomb_poison] run function snow_bomb:main/action_e
 execute if entity @s[tag = SnowBomb_icy] run function snow_bomb:main/action_events/bomb_effects/icy_bomb/main
 execute if entity @s[tag = SnowBomb_superIcy] run function snow_bomb:main/action_events/bomb_effects/super_icy_bomb/main
 execute if entity @s[tag = SnowBomb_mahapadma] run function snow_bomb:main/action_events/bomb_effects/mahapadma_bomb/main
+
+kill @s

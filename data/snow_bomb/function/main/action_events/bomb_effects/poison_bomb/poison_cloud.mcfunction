@@ -1,1 +1,1 @@
-summon minecraft:area_effect_cloud ~ ~ ~ {Duration: 1200, ReapplicationDelay: 20, Radius: 4.0f, RadiusOnUse: -0.5f, RadiusPerTick: -0.0025f, Effects: [{Id: 19, Amplifier: 4, Duration: 600, ShowIcon: true, ShowParticles: true}], Color:753920}
+summon minecraft:area_effect_cloud ~ ~ ~ {Duration: 1200, ReapplicationDelay: 20, Radius: 4.0f, RadiusOnUse: -0.5f, RadiusPerTick: -0.0025f, potion_contents: {custom_effects: [{id: "poison", amplifier: 4, duration: 600, show_icon: true, show_particles: true}], custom_color: 753920}}

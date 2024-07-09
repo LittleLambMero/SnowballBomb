@@ -8,10 +8,10 @@ execute unless score @s RelativePositionY <= @s BoundY run tag @s add YOutOfBoun
 
 execute if entity @s[tag = YOutOfBound] run return 0
 
-execute if entity @s[tag = InBound] if score @s RelativePositionX matches -3..3 if score @s RelativePositionZ matches -3..3 if score @s RelativePositionY matches 0 run tag @s add LV1Spawned
-execute if entity @s[tag = InBound] if score @s RelativePositionX matches -5..5 if score @s RelativePositionZ matches -5..5 if score @s RelativePositionY matches -2..2 run tag @s add LV2Spawned
-execute if entity @s[tag = InBound] if score @s RelativePositionX matches -7..7 if score @s RelativePositionZ matches -7..7 if score @s RelativePositionY matches -4..4 run tag @s add LV3Spawned
-execute if entity @s[tag = InBound] if score @s RelativePositionX matches -10..10 if score @s RelativePositionZ matches -10..10 if score @s RelativePositionY matches -5..5 run tag @s add LV4Spawned
+execute if entity @s[tag = InBound] if score @s RelativePositionX matches -2..2 if score @s RelativePositionZ matches -2..2 if score @s RelativePositionY matches 0 run tag @s add LV1Spawned
+execute if entity @s[tag = InBound] if score @s RelativePositionX matches -4..4 if score @s RelativePositionZ matches -4..4 if score @s RelativePositionY matches -1..1 run tag @s add LV2Spawned
+execute if entity @s[tag = InBound] if score @s RelativePositionX matches -6..6 if score @s RelativePositionZ matches -6..6 if score @s RelativePositionY matches -1..1 run tag @s add LV3Spawned
+execute if entity @s[tag = InBound] if score @s RelativePositionX matches -8..8 if score @s RelativePositionZ matches -8..8 if score @s RelativePositionY matches -5..5 run tag @s add LV4Spawned
 execute if entity @s[tag = LV1Spawned, tag = LV2Spawned] run tag @s remove LV4Spawned
 execute if entity @s[tag = LV1Spawned, tag = LV2Spawned] run tag @s remove LV3Spawned
 execute if entity @s[tag = LV1Spawned, tag = LV2Spawned] run tag @s remove LV2Spawned
@@ -31,10 +31,10 @@ execute if entity @s[tag = InBound, tag = LV4Spawned] run tag @s remove LV4Spawn
 execute if entity @s[tag = InBound] run scoreboard players add @s RelativePositionX 1
 execute if entity @s[tag = InBound] positioned ~1 ~ ~ run function snow_bomb:main/action_events/bomb_effects/mahapadma_bomb/freeze/spawn_marker/loop
 
-execute if entity @s[tag = XOutOfBound] run scoreboard players remove @s RelativePositionX 21
+execute if entity @s[tag = XOutOfBound] run scoreboard players remove @s RelativePositionX 17
 execute if entity @s[tag = XOutOfBound] run scoreboard players add @s RelativePositionZ 1
-execute if entity @s[tag = XOutOfBound] positioned ~-21 ~ ~1 run function snow_bomb:main/action_events/bomb_effects/mahapadma_bomb/freeze/spawn_marker/loop
+execute if entity @s[tag = XOutOfBound] positioned ~-17 ~ ~1 run function snow_bomb:main/action_events/bomb_effects/mahapadma_bomb/freeze/spawn_marker/loop
 
-execute if entity @s[tag = ZOutOfBound] run scoreboard players remove @s RelativePositionZ 21
+execute if entity @s[tag = ZOutOfBound] run scoreboard players remove @s RelativePositionZ 17
 execute if entity @s[tag = ZOutOfBound] run scoreboard players add @s RelativePositionY 1
-execute if entity @s[tag = ZOutOfBound] positioned ~ ~1 ~-21 run function snow_bomb:main/action_events/bomb_effects/mahapadma_bomb/freeze/spawn_marker/loop
+execute if entity @s[tag = ZOutOfBound] positioned ~ ~1 ~-17 run function snow_bomb:main/action_events/bomb_effects/mahapadma_bomb/freeze/spawn_marker/loop

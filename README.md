@@ -50,7 +50,7 @@
  &emsp;該物品的ID，後面會用於「資料夾命名」。
 
  ```mcfunction
- give @s snowball{display: {Name: '{"text": "小型雪球炸彈", "color": "white", "bold": false, "italic": false}', Lore: ['{"text": "最簡單的擲出式炸藥，能夠造成最小的爆炸傷害。", "color": "green", "italic": false}', '{"text": ""}', '[{"text": "威力：", "color": "gold", "italic": false}, {"text": "D+", "color": "#787D7A", "italic": false}]', '[{"text": "稀有度：", "color": "#FA0056", "italic": false}, {"text": "常見", "color": "white", "italic": false}]']}, RepairCost: 128, BombType: "small", ItemID: "snowbomb:small_bomb", isBomb: true}
+ give @s snowball[minecraft:item_name='{"text": "小型雪球炸彈", "color": "white", "bold": false, "italic": false}', minecraft:lore=['{"text": "最簡單的擲出式炸藥，能夠造成最小的爆炸傷害。", "color": "green", "italic": false}', '{"text": ""}', '[{"text": "威力：", "color": "gold", "italic": false}, {"text": "D+", "color": "#787D7A", "italic": false}]', '[{"text": "稀有度：", "color": "#FA0056", "italic": false}, {"text": "常見", "color": "white", "italic": false}]'], minecraft:max_stack_size=64, minecraft:custom_model_data=880001, minecraft:custom_data={BombType: "small", ItemID: "snowbomb:small_bomb", isBomb: true}]
  ```
 
  在設定完成後，您可以開始編寫該物品的配方表，並將該物品註冊於「items_manager」函數中，方便管理與呼叫。詳細教學可以見 [芒果羊羊自定義合成台](https://github.com/LittleLambMero/MeroCraftingTable) 中的自定義配方教學。
@@ -63,7 +63,7 @@
  標籤命名格式應為：**HoldBomb_&lt;BombType&gt;**
 
  ```mcfunction
- execute if entity @s[nbt = {SelectedItem: {id: "minecraft:snowball", tag: {BombType: "small"}}}] run tag @s add HoldBomb_small
+ execute if entity @s[nbt = {SelectedItem: {id: "minecraft:snowball", components: {"minecraft:custom_data": {BombType: "small"}}}}] run tag @s add HoldBomb_small
  ```
 
 ### 炸彈實體識別
@@ -114,8 +114,8 @@
 
  ```mcfunction
  # 【touch_water_explosion.mcfunction】
- # == 接觸到水面時造成爆炸 (模擬碰撞行為) == #
- execute if block ~ ~ ~ water run kill @e[type = snowball, sort = nearest, limit = 1]
+# == 接觸到水面時造成爆炸 (模擬碰撞行為) == #
+execute if block ~ ~ ~ water run kill @n[type = snowball]
  ```
 
 ### 爆炸事件容器
@@ -134,14 +134,10 @@
  函式檔案：<font color=red><u>main/action_events/bomb_effects/&lt;ItemID&gt;/main</u></font><p>
 
  當炸彈自身被消滅、破壞，將會根據炸彈實體標記的標籤執行爆炸事件。如果需要擴增函數來執行、或新增資料夾，請一律放置在&lt;ItemID&gt;資料夾中，並確保僅透過 main 函數來呼叫它們。<br>
- > [!IMPORTANT]
- > 注意，在main函數的最後必須執行`kill @s`指令。
 
  ```mcfunction
  # == 小型雪球炸彈的行為控制 == #
  summon minecraft:creeper ~ ~ ~ {CustomName: '{"text": "小型雪球炸彈", "color": "white"}', CustomNameVisible: false, Invulnerable: true, NoGravity: true, NoAI: true, Silent:true, ExplosionRadius: 1b, Fuse: 0}
-
- kill @s
  ```
 
 ### 重置炸彈持有標籤
@@ -156,6 +152,22 @@
 
 ## 版本紀錄
 
+<details>
+    <summary>v2.0.0</summary>
+
+    - 遊戲運行版本從 1.20.4 更新至 1.21
+
+    - 殺掉各式各樣的指令蟲蟲
+
+    - 削弱「爆裂閃鑽之星」的輻射雲時長
+
+    - 削弱「引雷信子」的麻痺力場效果強度
+
+    - 「冷凍彈」、「強化冷凍彈」、「八寒地獄」的攻擊範圍提升、傷害修正；水面凍結範圍縮小
+
+    - 炸彈爆炸時的粒子效果優化
+
+</details>
 <details>
     <summary>v1.3.0</summary>
 

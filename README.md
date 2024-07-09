@@ -169,6 +169,8 @@ execute if block ~ ~ ~ water run kill @n[type = snowball]
 
     - 炸彈爆炸時的粒子效果優化
 
+    - 修正配方表
+
 </details>
 <details>
     <summary>v1.3.0</summary>

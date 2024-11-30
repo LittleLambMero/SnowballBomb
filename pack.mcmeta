@@ -1,7 +1,8 @@
 {
 	"pack":
 	{
-		"pack_format":48,
-		"description":"一起開始蹦蹦蹦ㄉ爆炸派對吧(ﾟ∀ﾟ) BY 芒果羊羊"
+		"pack_format":42,
+		"description":"一起開始蹦蹦蹦ㄉ爆炸派對吧(ﾟ∀ﾟ) BY 芒果羊羊",
+		"supported_formats":[35, 46]
 	}
 }
